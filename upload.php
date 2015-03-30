@@ -1,7 +1,4 @@
 <?php
-	include_once('includes/functions.php');
-	$name = randomFileName();
-	echo'<p>'.$name.'</p>';
 
 ?>
 
@@ -9,7 +6,7 @@
 
  <label>Upload this file:</label>
  <input name="userfile" type="file" />
-
+	 <input type ="text" name="comments" id="comments" /><br />
  <input type="submit" value="Send File" />
 </form>
 

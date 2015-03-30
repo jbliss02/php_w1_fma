@@ -12,7 +12,8 @@
 	if ($_FILES['userfile']['error'] == UPLOAD_ERR_OK) {
 
 		//create the uploaded picture object
-		$pic = new uploadedPic($_FILES['userfile']['tmp_name'], basename($_FILES['userfile']['name']));
+		$pic = new uploadedPic($_FILES['userfile']['tmp_name'], basename($_FILES['userfile']['name']), $_POST['comments']);
+
 		if($pic->anyErrors){$errorCheck->addError($pic->errMsg);}
 	}
 	else {
@@ -21,7 +22,8 @@
 				
 	}//if upload error
 
-	//echo $errorCheck->hasError();
-	//echo $errorCheck->returnErrorMessages()[0];
-	
+	if($errorCheck->hasError()){
+		echo $errorCheck->returnErrorMessages()[0];
+	}
+
 ?>

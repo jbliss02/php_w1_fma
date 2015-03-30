@@ -13,7 +13,7 @@ class pic {
 	
 	public function __construct(){
 	
-
+		
 	}
 
 
