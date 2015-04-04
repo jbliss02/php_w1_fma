@@ -20,18 +20,16 @@
 	
 	
 		//the main thumbnail view
-	 $pics = new picCollection();
+	 $pics = new picCollection(); 
 	 
-	 echo('<img src="thumbView.php?img='.urlencode($pics->imgList[0]->fileName).'" />');
+	foreach($pics->imgList as $pic) {
+		echo('<img src="thumbView.php?img='.urlencode($pic->fileName).'" />');
+	}
+	 
+	 //echo('<img src="thumbView.php?img='.urlencode($pics->imgList[0]->fileName).'" />');
 	 
 	 
-	//$pics->loadAllImages();
-	//$pics->displayThumbs();
-	
-	 //echo(count($pics->imgList[0]));
-	
-	  //echo('<img src="'.$pics->imgList[0]->fileName.'" />');
-	
+
 
 	
 	}
