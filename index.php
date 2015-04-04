@@ -3,7 +3,8 @@
 	include_once('includes/functions.php');
 	require('classes/picCollection.php');
 	require('classes/template.php');
-
+	require('classes/dal.php');
+	
 	$view = new template('includes/templatePage.html'); //set the template object
 	
 	//extract the view number from the url parameter
@@ -18,20 +19,23 @@
 	if($viewNumber == 1){
 	
 		//the main thumbnail view
+		
+		//set the heading and content
 		$view->setContent("%heading%", "Main Page");
 		$view->setContent("%content%", "Click a thumbnail to view");
 		echo $view->returnContent();	
 				
+		//create the object containing the collection of all images and print the thumbnail for each
 		$pics = new picCollection(); 
 
 		foreach($pics->imgList as $pic) {
-			//echo('<img src="thumbView.php?img='.urlencode($pic->fileName).'" />');
-			//printThumbnail('thumbView.php?img='.urlencode($pic->fileName), $pic);
 			printThumbnail($pic);
 		}
 
 	}
 	else if ($viewNumber == 2){
+	
+		//the view of a single image
 	
 		if(isset($_GET["src"])){
 		
@@ -41,20 +45,18 @@
 			$view->setContent("%content%", "Click image return to main page");
 		
 			$pic = new downloadedPic($src);
-		
-			header('Content-Type: image/jpeg');
-			imagejpeg($pic->returnImage(), NULL, 100);
+			printImage($pic);
 			
+			//echo($src);
+			$dal = new dal();
+			$picInfo = $dal->getByFilePath($src);
 			
-		}
 
+			
+			printImageInfo($picInfo);
+			
+		}//view 2 ends
 	
-
+	}//which view #
 	
-	}
-	
-	
-
-
-
 ?>

@@ -11,6 +11,8 @@ class pic {
 	public $fileName; //the filename of this image
 	public $origName; //the name of the file that the user uploaded
 	public $description; //description user has entered
+	public $id; //the database record id for this image
+
 	protected $maxsize; //maximum size the server will accept, in px
 	
 	public function __construct(){

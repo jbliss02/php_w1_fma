@@ -6,17 +6,35 @@
 	
 	require('classes/downLoadedPic.php');
 	//require('classes/picDb.php');
+	//require('classes/dal.php');
 	
 	class picCollection{
 	
 		public $imgList = array();  //an array that contains downloadedPic objects !!changr to private??
-		
-		
+			
 		public function __construct(){
 			$this->loadAllImages();
 		}
 		
 		private function loadAllImages(){
+			//calls the web service for all images in the database
+			//creates the imgList and its component objects 
+			//each image class is created which sets the thumbnail images and so on
+			
+			$dal = new dal();
+			$pics = $dal->getAll();
+			
+			foreach($pics as $pic) {
+				
+				$p = new downLoadedPic($pic['filePath']);
+				$p->setMetaData($pic['imageDescription'], $pic['imageTitle']);
+				$this->imgList[] = $p;
+			
+			}
+		
+		}//loadAllImages
+		
+		private function loadAllImages2(){
 			//creates the imgList and its component objects from the image information in the database
 			//each image class is created which sets the thumbnail images and so on
 										

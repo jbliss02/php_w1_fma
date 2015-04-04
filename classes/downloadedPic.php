@@ -15,10 +15,12 @@ class downLoadedPic extends pic{
 		//class can only be built when all file information is supplied
 		//constructor assigns these values to the appropriate properties
 		//and creates the thumbnail image
+
 		
 		$this->fileName = $filePath;
 		$this->updateInfo();
 		$this->createThumbnail();
+		
 	}
 	
 	public function setMetaData($description, $imageTitle){
@@ -27,11 +29,17 @@ class downLoadedPic extends pic{
 		$this->origName = $imageTitle;
 	}
 	
+	public function getMetaData(){
+	
+		$dal = new dal();
+		$meta = $dal->getByFilePath($this->filePath);
+		
+	}
+	
 	public function createThumbnail(){
 		//returns a thumbnail image
 		
 		$newDim = $this->returnResizedDims($this->imgSize[0], $this->imgSize[1], $this->thumbNailSize);
-
 		$src = imagecreatefromjpeg($this->fileName); //get the temp file
 		$this->thumbNail  = $this->returnResizedImage($src, $this->imgSize[0], $newDim[0] , $this->imgSize[1], $newDim[1] ); 
 		
@@ -52,12 +60,6 @@ class downLoadedPic extends pic{
 	
 	}//returnImage
 
-	//public function returnThumbnail(){
-
-				//header('Content-Type: image/jpeg');	
-				//return imagejpeg($this->thumbNail, NULL, 90);
-				//return $this->thumbNail;
-	//}
 }//downLoadedPic
 
 ?>
