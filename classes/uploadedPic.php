@@ -45,7 +45,7 @@ class uploadedPic extends pic {
 				if($this->needsResize($this->tempInfo[0], $this->tempInfo[1])){
 	
 					//create a new image and save it to the disk
-					$newDims = $this->returnResizedDims($this->tempInfo[0], $this->tempInfo[1]); //get new size
+					$newDims = $this->returnResizedDims($this->tempInfo[0], $this->tempInfo[1], $this->maxsize); //get new size
 					$newImg = $this->returnResizedTempImg($newDims[0], $newDims[1]); //get the new image
 					$this->saveImage($newImg); //save the new image
 				}
@@ -127,12 +127,10 @@ class uploadedPic extends pic {
 		//if the image is resized then an image is created, rather
 		//than us saving the temporary file
 		
-		imagejpeg($image, $this->fileName.'.jpg', 80); //save the file
+		imagejpeg($image, $this->fileName, 80); //save the file
 		imagedestroy($image); //destroy the object
 	}
 		
-
-	
 	private function returnResizedTempImg($newWidth, $newHeight){
 		//creates a new image from the temporary image, based on the
 		//dimensions already passed in. Validation has already 
@@ -143,11 +141,8 @@ class uploadedPic extends pic {
 
 		return $new;
 		
-		//$this->saveImage($new); //save the new image
-				
 	}//createAndSaveResizedImage
 	
-
 	private function addDescription($description){
 		//adds a description that will be associated with this image
 	

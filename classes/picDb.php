@@ -63,7 +63,6 @@ class picDb extends db{
 		header('location: error.php?errText='.$this->conn->error);
 	}
 
-
 }//picDb ends
 
 ?>

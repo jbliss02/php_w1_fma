@@ -30,25 +30,25 @@ class pic {
 			
 		}//returnResizedImage
 		
-		protected function returnResizedDims($width, $height){
+		protected function returnResizedDims($width, $height, $maxsize){
 			//takes a width and height and returns an array for width and height
 			//based on what the max size constraints
 			//dimensions may have to be reduced more than once
 	
-			while($width > $this->maxsize || $height > $this->maxsize) {
+			while($width > $maxsize|| $height > $maxsize) {
 			
 				//amend the width and height to fit
-				if($width > $this->maxsize){
+				if($width > $maxsize){
 				
-					$factor = $this->maxsize / $width;
-					$width = $this->maxsize;
+					$factor = $maxsize / $width;
+					$width = $maxsize;
 					$height = $height * $factor;		
 
 				}
 				else {
 				
-					$factor = $this->maxsize / $height;
-					$height = $this->maxsize;
+					$factor = $maxsize / $height;
+					$height = $maxsize;
 					$width = $width * $factor;					
 				}
 			
