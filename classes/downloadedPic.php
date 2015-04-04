@@ -2,8 +2,8 @@
 //holds the information about an image that has exists on the server and is to be 
 //shown to the user on screen
 
-require('classes/pic.php');
-require('classes/picDb.php');
+	require('classes/pic.php');
+	require('classes/picDb.php');
 
 class downLoadedPic extends pic{
 
@@ -11,17 +11,20 @@ class downLoadedPic extends pic{
 	private $thumbNailSize; //the max size for a thumbnail image
 	private $imgSize;
 	
-	public function __construct($filePath, $description, $imageTitle){
+	public function __construct($filePath){
 		//class can only be built when all file information is supplied
 		//constructor assigns these values to the appropriate properties
 		//and creates the thumbnail image
 		
 		$this->fileName = $filePath;
-		$this->description = $description;
-		$this->origName = $imageTitle;
-
 		$this->updateInfo();
 		$this->createThumbnail();
+	}
+	
+	public function setMetaData($description, $imageTitle){
+		//sets the description and the title
+		$this->description = $description;
+		$this->origName = $imageTitle;
 	}
 	
 	public function createThumbnail(){
@@ -29,7 +32,6 @@ class downLoadedPic extends pic{
 		
 		$newDim = $this->returnResizedDims($this->imgSize[0], $this->imgSize[1], $this->thumbNailSize);
 
-		
 		$src = imagecreatefromjpeg($this->fileName); //get the temp file
 		$this->thumbNail  = $this->returnResizedImage($src, $this->imgSize[0], $newDim[0] , $this->imgSize[1], $newDim[1] ); 
 		
@@ -44,9 +46,10 @@ class downLoadedPic extends pic{
 	}
 
 	public function returnThumbnail(){
-	
-						
+
+				header('Content-Type: image/jpeg');	
 				return imagejpeg($this->thumbNail, NULL, 90);
+				//return $this->thumbNail;
 	}
 }//downLoadedPic
 

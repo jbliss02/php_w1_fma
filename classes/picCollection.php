@@ -14,10 +14,9 @@
 		
 		public function __construct(){
 			$this->loadAllImages();
-			//$this->createThumbnails();
 		}
 		
-		public function loadAllImages(){
+		private function loadAllImages(){
 			//creates the imgList and its component objects from the image information in the database
 			//each image class is created which sets the thumbnail images and so on
 										
@@ -33,32 +32,22 @@
 			while ($row = mysqli_fetch_assoc($result)) {
 				
 				//create a new image class and add it to the collection
-				$p = new downLoadedPic($row['filePath'], $row['imageDescription'], $row['imageTitle']);
+				$p = new downLoadedPic($row['filePath']);
+				$p->setMetaData($row['imageDescription'], $row['imageTitle']);
 				$this->imgList[] = $p;
+
 			}
 			
 			mysqli_free_result($result);
 		
 		}//loadAllImages
 		
-			public function displayThumbs(){
-			//will be moved
-			
-				foreach($this->imgList as $val) {
-					
-					//header('Content-Type: image/jpeg');
-					
-					//echo('<img src="'.imagejpeg($val->thumbNail, NULL, 90).'" />');
-					//echo('<img src="'.$val->fileName.'" />');
-					//imagejpeg($val->thumbNail, NULL, 90);
-					
+		public function returnThumb(){
 					header('Content-Type: image/jpeg');		
-					echo($val->returnThumbnail());
+					//echo($this->imgList[0]->returnThumbnail());
+					return $this->imgList[0]->returnThumbnail();
+		}
 					
-				}
-				
-			}//displayThumbs
-			
 	}//class edns
 
 
