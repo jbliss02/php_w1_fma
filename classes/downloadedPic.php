@@ -41,16 +41,23 @@ class downLoadedPic extends pic{
 		//updates the properties in this class related to the image
 		
 		$this->thumbNailSize = 50; //set the thumbnail size
-		$this->imgSize = getimagesize($this->fileName);
+		$this->imgSize = getimagesize($this->fileName);	
+		
+	}//updateInfo
 	
-	}
+	public function returnImage(){
+	
+		$src = imagecreatefromjpeg($this->fileName); //get the temp file
+		return $src;
+	
+	}//returnImage
 
-	public function returnThumbnail(){
+	//public function returnThumbnail(){
 
-				header('Content-Type: image/jpeg');	
-				return imagejpeg($this->thumbNail, NULL, 90);
+				//header('Content-Type: image/jpeg');	
+				//return imagejpeg($this->thumbNail, NULL, 90);
 				//return $this->thumbNail;
-	}
+	//}
 }//downLoadedPic
 
 ?>
