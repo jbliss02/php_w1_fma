@@ -30,8 +30,10 @@
 		
 		function printImageInfo($picInfo){
 		
+			echo('<div class ="picInfo">');
 			echo('<h2>'.$picInfo[0]['imageTitle'].'</h2>');
 			echo('<p>'.$picInfo[0]['imageDescription'].'</p>');
+			echo('</div>');
 		}
 		
 ?>

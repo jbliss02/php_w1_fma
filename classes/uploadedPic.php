@@ -13,11 +13,11 @@ class uploadedPic extends pic {
 	public $supportedFile; //whether the file uploaded is valid
 	public $anyErrors; //whether the transform and validate process has worked
 	public $errMsg; //details of the last error encountered
-
+	public $tempInfo; //info about this tempfile
+	
 	private $origExt; //original extension, allows program to be more easily extended from jpeg
 	private $dbId; //the incremented number from the databse to add to the image name
 	private $tempName; //where file is saved on server after upload
-	private $tempInfo; //info about this tempfile
 	private $uploadLocation; // where to save pictures
 	
 	public function __construct($tempFile, $origName, $description){
@@ -79,7 +79,7 @@ class uploadedPic extends pic {
 		}
 		else {
 			$this->anyErrors = true;
-			$this->errMsg = 'The upload failed';
+			$this->errMsg = $lang['errupload'];
 			return false;
 		}
 		
@@ -117,7 +117,7 @@ class uploadedPic extends pic {
 		}
 		else{
 			$this->anyErrors = true;
-			$this->errMsg = 'The file did not upload successfully';
+			$this->errMsg = $lang['errupload'];
 		}
 		
 	}//makePermanent

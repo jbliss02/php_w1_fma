@@ -49,8 +49,8 @@ class picDb extends db{
 	
 	public function addImage($pic){
 	
-		$sql = "INSERT INTO imgStore (filePath, imageTitle, imageDescription)
-					  VALUES ('".$pic->fileName."', '".$pic->origName."', '".$pic->description."');";
+		$sql = "INSERT INTO imgStore (filePath, imageTitle, imageDescription, height, width)
+					  VALUES ('".$pic->fileName."', '".$pic->origName."', '".$pic->description."', ".$pic->tempInfo[0].", ".$pic->tempInfo[1].");";
 										
 		$result = $this->conn->query($sql);
 		

@@ -26,40 +26,16 @@
 			
 			foreach($pics as $pic) {
 				
-				$p = new downLoadedPic($pic['filePath']);
-				$p->setMetaData($pic['imageDescription'], $pic['imageTitle']);
-				$this->imgList[] = $p;
-			
-			}
+				if(file_exists($pic['filePath'])){ //check the file exists
+					$p = new downLoadedPic($pic['filePath']);
+					$p->setMetaData($pic['imageDescription'], $pic['imageTitle']);
+					$this->imgList[] = $p;
+				}
+		
+			}//for each picture
 		
 		}//loadAllImages
-		
-		private function loadAllImages2(){
-			//creates the imgList and its component objects from the image information in the database
-			//each image class is created which sets the thumbnail images and so on
-										
-			$picDb = new picDb();
-			$sql = "SELECT id, filePath, imageTitle, imageDescription FROM imgStore";
-			
-			$result = $picDb->conn->query($sql);
-	
-			if($result === false) {
-				header('location: error.php?errText='.$picDb->conn->error);
-			}
-			
-			while ($row = mysqli_fetch_assoc($result)) {
 				
-				//create a new image class and add it to the collection
-				$p = new downLoadedPic($row['filePath']);
-				$p->setMetaData($row['imageDescription'], $row['imageTitle']);
-				$this->imgList[] = $p;
-
-			}
-			
-			mysqli_free_result($result);
-		
-		}//loadAllImages
-		
 		public function returnThumb(){
 					header('Content-Type: image/jpeg');		
 					//echo($this->imgList[0]->returnThumbnail());

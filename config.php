@@ -1,7 +1,8 @@
 <?php
 
 	$config['debugMode'] = true; 
-	
+	$config['language'] = 'en';
+
 	//database information
 	//$config['server'] = 'mysqlsrv.dcs.bbk.ac.uk';
 	//$config['username'] = 'jbliss02';

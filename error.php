@@ -5,23 +5,24 @@
 	include('includes/functions.php');
 	require('classes/template.php');
 	include_once('config.php');
+	require 'lang/'. $config['language'] .'.php';
 		
 	$view = new template('includes/templatePage.html'); 
 
 	//default main view
-	$view->setContent("%heading%", "Error");
+	$view->setContent("%heading%", $lang['errheader']);
 	
 	//print detailed or generic header message, depending on the debug mode
 	if($config['debugMode'] == 1){
 			if(isset($_GET["errText"])){
-				$view->setContent("%content%",$_GET["errText"]);
+				$view->setContent("%content%",urldecode($_GET["errText"]));
 			}
 			else {
-			$view->setContent("%content%",'No error in url paramater');
+			$view->setContent("%content%",$lang['paramerror']);
 			}
 	}
 	else {
-		$view->setContent("%content%", "Something has gone wrong. Try to re-install, see readme.txt");
+		$view->setContent("%content%", $lang['errMsg']);
 	}
 	
 	echo $view->returnContent();

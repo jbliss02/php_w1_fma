@@ -10,7 +10,6 @@
 	
 		public function createTables() {
 		
-			echo 'Setting up databse';
 			$sql = $this->returnCreateSql();
 			
 			for($i = 0; $i < count($sql); $i++){
@@ -19,29 +18,27 @@
 				
 				if($result === false)
 				{
-					header('location: error.php?errText='.$this->conn->error);
-				}
-				else
-				{
-					echo '<p>Database update '.($i + 1).' of '.count($sql).' successful</p>';
+					header('location: error.php?errText='.urlencode($this->conn->error));
 				}
 			
 			}//for each sql statement
-			
+						
 		}//createTables()
 
 		private function returnCreateSql(){
 		
-			$ret[0] = "DROP TABLE `imgStore`";
+			$ret[0] = "DROP TABLE IF EXISTS `imgStore`";
 					
 			$ret[1] =  "CREATE TABLE `imgStore` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,
 				`filePath` varchar(255) NOT NULL,
 				`imageTitle` varchar(255) NOT NULL,
 				`imageDescription` varchar(255),
+				`width` int,
+				`height` int,
 				PRIMARY KEY (`id`));";
 				
-			$ret[2] = "DROP TABLE `imgId`";
+			$ret[2] = "DROP TABLE IF EXISTS `imgId`";
 			
 			$ret[3] = "CREATE TABLE `imgId` (
 				`id` int(11) NOT NULL AUTO_INCREMENT,

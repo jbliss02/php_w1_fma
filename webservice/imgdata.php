@@ -10,7 +10,7 @@
 	$picDb = new db();
 	
 	//create the sql string based on any parameters sent in
-	$sql = "SELECT id, filePath, imageTitle, imageDescription FROM imgStore"; //start the sql string
+	$sql = "SELECT id, filePath, imageTitle, imageDescription, height, width FROM imgStore"; //start the sql string
 
 	if(isset($_GET["id"])){
 		$sql = $sql." WHERE id = '".urldecode($_GET["id"])."'";
@@ -22,14 +22,13 @@
 		$sql = $sql." WHERE filePath = '".urldecode($_GET["path"])."'";
 	}
 
-
 	//query the database		
 	$ret = array(); //the return array
 	$result = $picDb->conn->query($sql);
 	
 	if($result === false) {
-		//header('location: error.php?errText='.$picDb->conn->error);
-		echo 'error '.$picDb->conn->error; //let the calling app deal with any error
+		header('location: error.php?errText='.$picDb->conn->error);
+		//echo 'error '.$picDb->conn->error; //let the calling app deal with any error
 	}
 	
 	while ($row = mysqli_fetch_assoc($result)) {

@@ -4,7 +4,6 @@
 	
 class dal {
 
-	
 	public function getAll(){
 	
 		$my_curl = $this->returnCurl('http://127.0.0.1/fma/webservice/imgdata.php');
@@ -20,13 +19,7 @@ class dal {
 		curl_close($my_curl);
 	
 	}
-	
-	public function insertImage($pic){
-	
-		
-	
-	}
-	
+
 	private function returnCurl($url){
 		$my_curl = curl_init();
 		curl_setopt($my_curl, CURLOPT_URL, $url);

@@ -23,7 +23,9 @@
 	}//if upload error
 
 	if($errorCheck->hasError()){
-		echo $errorCheck->returnErrorMessages()[0];
+		header('location: error.php?errText='.urlencode($errorCheck->returnErrorMessages()[0]));
 	}
 
+	header('location: index.php?view=4'); //success page
+	
 ?>

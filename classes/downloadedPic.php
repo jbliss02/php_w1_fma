@@ -3,7 +3,6 @@
 //shown to the user on screen
 
 	require('classes/pic.php');
-	require('classes/picDb.php');
 
 class downLoadedPic extends pic{
 
@@ -15,8 +14,7 @@ class downLoadedPic extends pic{
 		//class can only be built when all file information is supplied
 		//constructor assigns these values to the appropriate properties
 		//and creates the thumbnail image
-
-		
+	
 		$this->fileName = $filePath;
 		$this->updateInfo();
 		$this->createThumbnail();
