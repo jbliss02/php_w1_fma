@@ -20,11 +20,16 @@ class uploadedPic extends pic {
 	private $tempName; //where file is saved on server after upload
 	private $uploadLocation; // where to save pictures
 	
+
+		
 	public function __construct($tempFile, $origName, $description){
 		//object can only be created if a reference to a file is passed in
 		//this is the temporary file that has just been uploaded to the server
 		//construtor calls the methods that runs the appropriate analysis on the document
 		//and sets the appropriate properties
+		
+		require('config.php');
+		require 'lang/'. $config['language'] .'.php';
 		
 		$this->anyErrors = false;
 		$this->setFileNames($tempFile, $origName, $description); //set the file attributes
@@ -55,7 +60,11 @@ class uploadedPic extends pic {
 				$picDb->addImage($this); //add the image information to the database
 				
 			}//if this file is supported
-			
+			else{
+				$this->anyErrors = true; //not a supported file type
+				$this->errMsg = $lang['filetype'];
+			}
+					
 		}//if upload ok
 								
 	} //constructor
@@ -66,7 +75,10 @@ class uploadedPic extends pic {
 		$this->tempName = $tempFile;
 		$this->origExt = pathinfo($origName, PATHINFO_EXTENSION);
 		$this->origName = substr(basename($origName, $this->origExt), 0, -1);		
-		$this->uploadLocation = $_SERVER['DOCUMENT_ROOT'].'/uploads/';
+		//$this->uploadLocation = 'uploads/';
+		require('config.php');
+		$this->uploadLocation = $config['uploadLocation'];
+		
 		$this->maxsize = 600;	
 		$this->addDescription($description);
 	}
@@ -98,8 +110,8 @@ class uploadedPic extends pic {
 				
 		$this->tempInfo = getimagesize($this->tempName);
 				
-		if($this->tempInfo == FALSE || $this->tempInfo[2] != IMAGETYPE_JPEG){
-			$this->supportedFile = FALSE;
+		if($this->tempInfo == false || $this->tempInfo[2] != IMAGETYPE_JPEG){
+			$this->supportedFile = false;
 			$this->anyErrors = true;
 		}
 		else {		

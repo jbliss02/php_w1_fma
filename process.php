@@ -3,7 +3,9 @@
 	//called on the post when a user has tried to upload a picture
 	//validates the upload process, and the file type
 	//if successful copies the file into the local server
-
+	
+	require('config.php');
+	require 'lang/'. $config['language'] .'.php';
 	require('classes/errorCheck.php');
 	$errorCheck = new errorCheck();
 
@@ -18,14 +20,18 @@
 	}
 	else {
 	
-		$errorCheck->addError('File upload failed '.$_FILES['userfile']['error']);
+		$errorCheck->addError($lang['errupload'].$_FILES['userfile']['error']);
 				
 	}//if upload error
 
 	if($errorCheck->hasError()){
-		header('location: error.php?errText='.urlencode($errorCheck->returnErrorMessages()[0]));
+		header('location: error.php?errText='.urlencode($errorCheck->returnErrorMessage()));
 	}
+	else{
+		header('location: index.php?view=4'); //success page
+	}
+	
 
-	header('location: index.php?view=4'); //success page
+
 	
 ?>

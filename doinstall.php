@@ -14,6 +14,7 @@
 		
 		$view->setContent("%heading%", $lang['install']);
 		$view->setContent("%content%", $lang['installok']);
+		$view->setContent("%data%", '');
 		echo $view->returnContent();	
 		
 		

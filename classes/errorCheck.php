@@ -32,8 +32,8 @@ class errorCheck {
 		return !$this->ok;
 	}
 	
-	public function returnErrorMessages(){
-		return $this->errorMsg;
+	public function returnErrorMessage(){
+		return $this->errorMsg[0];
 	}
 	
 	public function returnSuccessMessage(){

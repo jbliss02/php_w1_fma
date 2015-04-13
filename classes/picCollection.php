@@ -4,7 +4,7 @@
 	//and contains appropriate methods and properties 
 	//to manage them
 	
-	require('classes/downLoadedPic.php');
+	require('downloadedPic.php');
 	//require('classes/picDb.php');
 	//require('classes/dal.php');
 	
@@ -13,7 +13,9 @@
 		public $imgList = array();  //an array that contains downloadedPic objects !!changr to private??
 			
 		public function __construct(){
+
 			$this->loadAllImages();
+
 		}
 		
 		private function loadAllImages(){
@@ -23,10 +25,11 @@
 			
 			$dal = new dal();
 			$pics = $dal->getAll();
-			
+							
 			foreach($pics as $pic) {
-				
+															
 				if(file_exists($pic['filePath'])){ //check the file exists
+
 					$p = new downLoadedPic($pic['filePath']);
 					$p->setMetaData($pic['imageDescription'], $pic['imageTitle']);
 					$this->imgList[] = $p;

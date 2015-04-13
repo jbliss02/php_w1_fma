@@ -2,7 +2,7 @@
 //holds the information about an image that has exists on the server and is to be 
 //shown to the user on screen
 
-	require('classes/pic.php');
+	require('pic.php');
 
 class downLoadedPic extends pic{
 
@@ -28,7 +28,7 @@ class downLoadedPic extends pic{
 	}
 	
 	public function getMetaData(){
-	
+		//gets information from the web service about the image
 		$dal = new dal();
 		$meta = $dal->getByFilePath($this->filePath);
 		

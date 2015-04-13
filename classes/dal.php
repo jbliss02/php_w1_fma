@@ -6,15 +6,16 @@ class dal {
 
 	public function getAll(){
 	
-		$my_curl = $this->returnCurl('http://127.0.0.1/fma/webservice/imgdata.php');
+		require('config.php');
+		$my_curl = $this->returnCurl($config['webService']);
 		return($this->executeCurl($my_curl));
 		curl_close($my_curl);
 		
 	}//getAll
 	
 	public function getByFilePath($filePath){
-	
-		$my_curl = $this->returnCurl('http://127.0.0.1/fma/webservice/imgdata.php?path='.urlencode($filePath));
+		require('config.php');
+		$my_curl = $this->returnCurl($config['webService'].'?path='.urlencode($filePath));
 		return($this->executeCurl($my_curl));
 		curl_close($my_curl);
 	
@@ -38,7 +39,7 @@ class dal {
 		if(curl_errno($curl)) {
 
 		 $err = curl_errno($curl).' - '.curl_error($curl);	 
-		 header('location: error.php?errText='.urlencode($err));
+		 header('location: ../error.php?errText='.urlencode($err));
 		 
 		} 
 		else {
@@ -46,10 +47,12 @@ class dal {
 			$data = json_decode($result, true);
 
 			if(json_last_error() == JSON_ERROR_NONE){		
+			
 				return $data;
 			} 
 			else{
-			 header('location: error.php?errText='.urlencode(json_last_error()));		 
+			//echo json_last_error();
+			 header('location: ../error.php?errText='.urlencode(json_last_error()));		 
 			}
 
 		 }//error or not

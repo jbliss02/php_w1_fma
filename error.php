@@ -25,6 +25,7 @@
 		$view->setContent("%content%", $lang['errMsg']);
 	}
 	
+	$view->setContent("%data%", '');
 	echo $view->returnContent();
 	
 ?>

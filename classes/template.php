@@ -37,7 +37,7 @@
 			return $content;
 			
 		}//returnContent()
-	
+			
 	}//template class ends
 	
 ?>

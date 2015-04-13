@@ -20,7 +20,8 @@
 	$lang['errheader'] = "ERROR";
 	$lang['paramerror'] = "No error in url paramater";
 	$lang['errMsg'] = "Something has gone wrong. Try to re-install, see readme.txt";
-	$lang['errupload'] = "The upload failed";
+	$lang['errupload'] = "The upload failed ";
+	$lang['filetype'] = "The file type is not supported";
 	
 	//install
 	$lang['install'] = "Install Info";
