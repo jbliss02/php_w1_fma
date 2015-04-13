@@ -1,4 +1,7 @@
 <?php
+
+	//used to do a fresh install of the application
+
 	require('classes/template.php');
 	require('config.php');
 	require 'lang/'. $config['language'] .'.php';

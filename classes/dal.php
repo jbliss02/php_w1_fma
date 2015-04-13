@@ -5,7 +5,8 @@
 class dal {
 
 	public function getAll(){
-	
+		//gets the information about all items in the database
+		
 		require('config.php');
 		$my_curl = $this->returnCurl($config['webService']);
 		return($this->executeCurl($my_curl));
@@ -14,6 +15,8 @@ class dal {
 	}//getAll
 	
 	public function getByFilePath($filePath){
+		//gets information about a specific item, based on the filepath
+		
 		require('config.php');
 		$my_curl = $this->returnCurl($config['webService'].'?path='.urlencode($filePath));
 		return($this->executeCurl($my_curl));
@@ -51,7 +54,6 @@ class dal {
 				return $data;
 			} 
 			else{
-			//echo json_last_error();
 			 header('location: ../error.php?errText='.urlencode(json_last_error()));		 
 			}
 

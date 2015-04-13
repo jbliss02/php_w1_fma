@@ -26,7 +26,8 @@
 		}//createTables()
 
 		private function returnCreateSql(){
-		
+			//generates the SQL to drop and recreate all tables for a fresh install
+			
 			$ret[0] = "DROP TABLE IF EXISTS `imgStore`";
 					
 			$ret[1] =  "CREATE TABLE `imgStore` (
@@ -49,7 +50,7 @@
 			
 			return $ret;
 		
-		}
+		}//returnCreateSql
 	
 	}//class ends
 	

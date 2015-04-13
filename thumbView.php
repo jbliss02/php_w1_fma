@@ -1,5 +1,7 @@
 <?php
 
+	//the code that creates an image for a thumbnail
+	
 	require('classes/downloadedPic.php');
 	
 	//the the file name from the url

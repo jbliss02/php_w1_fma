@@ -14,7 +14,7 @@
 			
 		public function __construct(){
 
-			$this->loadAllImages();
+			$this->loadAllImages(); //load all images when an object is created
 
 		}
 		

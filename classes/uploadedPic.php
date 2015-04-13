@@ -20,8 +20,6 @@ class uploadedPic extends pic {
 	private $tempName; //where file is saved on server after upload
 	private $uploadLocation; // where to save pictures
 	
-
-		
 	public function __construct($tempFile, $origName, $description){
 		//object can only be created if a reference to a file is passed in
 		//this is the temporary file that has just been uploaded to the server
@@ -38,8 +36,7 @@ class uploadedPic extends pic {
 		$picDb = new picDb();
 		$this->dbId = $picDb->getNextId();
 
-		//if upload all ok then copy image to server
-		//resizing if necessary
+		//if upload all ok then copy image to serverm, resizing if necessary
 		if($this->validateUpload()){
 		
 			$this->createSystemName();

@@ -1,5 +1,6 @@
 <?php
-
+	//code that creates an image for view
+	
 	require('classes/downloadedPic.php');
 	
 	//the the file name from the url

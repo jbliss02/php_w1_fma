@@ -19,7 +19,7 @@ class downLoadedPic extends pic{
 		$this->updateInfo();
 		$this->createThumbnail();
 		
-	}
+	}//constructor
 	
 	public function setMetaData($description, $imageTitle){
 		//sets the description and the title
@@ -29,10 +29,11 @@ class downLoadedPic extends pic{
 	
 	public function getMetaData(){
 		//gets information from the web service about the image
+		
 		$dal = new dal();
 		$meta = $dal->getByFilePath($this->filePath);
 		
-	}
+	}//getMetaData
 	
 	public function createThumbnail(){
 		//returns a thumbnail image

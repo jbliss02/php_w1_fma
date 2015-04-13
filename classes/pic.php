@@ -54,7 +54,8 @@ class pic {
 				$width = $width * $factor;					
 			}
 		
-		}			
+		}//while image needs resizing
+		
 		$ret = array($width,$height);
 		return $ret;
 		
